@@ -58,5 +58,24 @@ char* CBook::setAuthor(char* cAuthor)
 
 void CBook::writeData()
 {
-	
+	ofstream ofile;
+	ofile.open("../dataBase/book.dat", ios::binary|ios::app);
+	if (!ofile.good())
+		return;
+	try
+	{
+		ofile.write(m_cName, NUM1);
+		ofile.write(m_clsbn, NUM1);
+		ofile.write(m_cPrice, NUM2);
+		ofile.write(m_cAuthor, NUM2);
+	}
+	catch (CFileException* e)
+	{
+		throw "file error occurred";
+		ofile.close();
+	}
+	catch (CException* e)
+	{
+	}
+	ofile.close();
 }

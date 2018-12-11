@@ -120,6 +120,7 @@ void mainLoop()
 			break;
 		case 3:
 			clearScreen();
+			deleteBookFromFile();
 			break;
 		default:
 			break;
@@ -273,6 +274,7 @@ void deleteBookFromFile()
 		file.seekg(0, ios_base::end);
 		fileSize = file.tellg();
 		dataSize = fileSize / (NUM1 + NUM1 + NUM2 + NUM2);
+		cout <<dataSize<<endl;
 		if (dataSize < iCount)
 		{
 			int usrSelect;

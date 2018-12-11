@@ -4,7 +4,7 @@
 class CBook
 {
 public:
-	CBook() = default;
+	//CBook() = default;
 	CBook(char *cName, char *clsbn, char *cPrice, char *cAuthor);
 	~CBook(){}
 	char* getName();

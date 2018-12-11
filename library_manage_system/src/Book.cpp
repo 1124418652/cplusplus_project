@@ -12,8 +12,7 @@ CBook::CBook(char *cName, char *clsbn, char *cPrice, char *cAuthor)
 	strncpy(m_cAuthor, cAuthor, NUM2);
 }
 
-char* CBook::getName()
-{
+char* CBook::getName(){
 	return m_cName;
 }
 
@@ -26,40 +25,34 @@ void CBook::setName(char* cName)
 	strncpy(m_cName, cName, NUM1);    
 }
 
-char* CBook::getlsbn()
-{
+char* CBook::getlsbn(){
 	return m_clsbn;
 }
 
-void CBook::setlsbn(char* clsbn)
-{
+void CBook::setlsbn(char* clsbn){
 	strncpy(m_clsbn, clsbn, NUM1);
 }
 
-void CBook::getPrice()
-{
+char* CBook::getPrice(){
 	return m_cPrice;
 }
 
-char* CBook::setPrice(char* cPrice)
-{
+void CBook::setPrice(char* cPrice){
 	strncpy(m_cPrice, cPrice, NUM2);
 }
 
-void CBook::getAuthor()
-{
+char* CBook::getAuthor(){
 	return m_cAuthor;
 }
 
-char* CBook::setAuthor(char* cAuthor)
-{
+void CBook::setAuthor(char* cAuthor){
 	strncpy(m_cAuthor, cAuthor, NUM2);
 }
 
 void CBook::writeData()
 {
-	ofstream ofile;
-	ofile.open("../dataBase/book.dat", ios::binary|ios::app);
+	std::ofstream ofile;
+	ofile.open("../dataBase/book.dat", std::ios::binary|std::ios::app);
 	if (!ofile.good())
 		return;
 	try
@@ -74,8 +67,28 @@ void CBook::writeData()
 		throw "file error occurred";
 		ofile.close();
 	}
-	catch (CException* e)
-	{
-	}
 	ofile.close();
+}
+
+void CBook::getBookFromFile(int iCount)
+{
+	char cName[NUM1];
+	char clsbn[NUM1];
+	char cPrice[NUM2];
+	char cAuthor[NUM2];
+	std::ifstream ifile;
+	ifile.open("../dataBase/book.dat", std::ios::binary);
+	if (!ifile.good())
+		return;
+	try
+	{
+		ifile.seekg(iCount * (NUM1 * 2 + NUM2 * 2), std::ios_base::beg);
+		ifile.read(cName, NUM1);
+
+	}
+	catch (CFileException* e)
+	{
+		throw "file error occurred";
+		ifile.close();
+	}
 }

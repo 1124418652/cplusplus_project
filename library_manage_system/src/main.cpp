@@ -209,6 +209,7 @@ void viewData(int iSelPage = 1)
 				cout << setw(15) << inAuthor << endl;
 			}
 		}
+		ifile.close();
 	}
 	catch (...)
 	{
@@ -269,12 +270,11 @@ void deleteBookFromFile()
 	{
 		cout << "请输入要删除的记录的索引：";
 		cin >> iCount;
-		fstream file;
-		file.open("../dataBase/book.dat", std::ios::in);
-		file.seekg(0, ios_base::end);
+		ifstream file;
+		file.open("../dataBase/book.dat", ios::binary);
+		file.seekg(0, std::ios_base::end);
 		fileSize = file.tellg();
 		dataSize = fileSize / (NUM1 + NUM1 + NUM2 + NUM2);
-		cout <<dataSize<<endl;
 		if (dataSize < iCount)
 		{
 			int usrSelect;
@@ -285,10 +285,11 @@ void deleteBookFromFile()
 				if (_kbhit())
 				{
 					usrSelect = _getch();
-					if (80 == usrSelect)
+					cout <<usrSelect<<endl;
+					if (13 == usrSelect)
 						break;
-					else if (13 == usrSelect)
-						system("exit");
+					else if (113 == usrSelect)
+						return;
 				}
 			}
 			continue;
@@ -297,6 +298,11 @@ void deleteBookFromFile()
 		{
 			cout << "the index must larger than 0" << endl;
 			continue;
+		}
+		else
+		{
+			CBook book;
+			book.deleteData(iCount);
 		}
 	}
 	

@@ -270,7 +270,8 @@ void deleteBookFromFile()
 		cin >> iCount;
 		fstream file;
 		file.open("../dataBase/book.dat", std::ios::in);
-		fileSize = file.seekg(0, ios_base::end);
+		file.seekg(0, ios_base::end);
+		fileSize = file.tellg();
 		dataSize = fileSize / (NUM1 + NUM1 + NUM2 + NUM2);
 		if (dataSize < iCount)
 		{

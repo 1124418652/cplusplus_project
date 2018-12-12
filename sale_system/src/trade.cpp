@@ -3,7 +3,7 @@
 
 bool Trade::buy(int ID, int count)
 {
-	for (auto iter = dataList.begin();
+	for (std::list<Commodity>::iterator iter = dataList.begin();
 		 iter != dataList.end(); ++iter)
 	{
 		if (iter->getID() == ID)
@@ -12,4 +12,5 @@ bool Trade::buy(int ID, int count)
 			return true;
 		}
 	}
+	return false;
 }

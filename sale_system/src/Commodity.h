@@ -1,3 +1,10 @@
+#ifndef _COMMODITY_H
+#define _COMMODITY_H
+
+/*
+商品类
+实例化后的每一个对象表示一类商品
+*/
 class Commodity
 {
 public:
@@ -16,3 +23,5 @@ private:
 	float price;         // 售价
 	char name[30];       // 商品名称
 };
+
+#endif

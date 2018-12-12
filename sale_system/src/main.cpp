@@ -1,5 +1,6 @@
 #include <iostream>
-//#include "Commodity.h"
+#include "Commodity.h"
+#include "trade.h"
 
 using namespace std;
 

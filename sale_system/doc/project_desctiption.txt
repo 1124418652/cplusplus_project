@@ -1,0 +1,4 @@
+一、公共类设计
+商品（commodity）类：
+成员变量（private）
+int static kinds;    // 商品种类

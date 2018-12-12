@@ -9,8 +9,7 @@ Commodity::Commodity(char name[], float costPrice, float price)
 	this->price = price;
 	this->ID = kinds;
 	this->stock = 0;
-	memset(this->name, 0, 30);
-	strncpy(this->name, name, 30);
+	strcpy(this->name, name);
 }
 
 int Commodity::getID(){

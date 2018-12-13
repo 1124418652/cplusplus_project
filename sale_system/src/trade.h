@@ -4,6 +4,9 @@
 #ifndef _TRADE_H
 #define _TRADE_H
 
+#define CAP 5
+#define TLEN 10
+#define ALEN 30
 /*
 Trade类的作用是处理并保存数据
 */

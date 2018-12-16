@@ -7,7 +7,7 @@
 #define SYS_TITLE "销售系统"
 using namespace std;
 
-static void drawMainMenu()
+static void conSet()
 {
 	char console_set[80];
 	char title[20];
@@ -16,6 +16,11 @@ static void drawMainMenu()
 	system("cls");
 	system(console_set);
 	system(title);
+}
+
+static void drawMainMenu()
+{
+	system("cls");
 	printf("\t||=======================================||\n");
 	printf("\t||           欢迎使用销售系统            ||\n");
 	printf("\t||=======================================||\n");
@@ -29,12 +34,116 @@ static void drawMainMenu()
 	printf("\t||=======================================||\n");
 }
 
+static void drawIndex()
+{
+	system("cls");
+	printf("\t=====================================================\n");
+	printf("\t              ******  商品目录  ******               \n");
+	printf("\t=====================================================\n");
+}
+
+static void drawLine()
+{
+	printf("\t=====================================================\n");
+}
+
+void operate()
+{
+	cout << "按任意键继续" << endl;
+	getchar();
+	system("cls");
+}
+
+void toBuy(int& ID, int& count);
+void toSell(int& ID, int& count);
+
 int main(int argc, char* argv[])
 {
+	conSet();
 	Trade myTrade;
 	if (!myTrade.init())
 	{
-		myTrade = Trade();
+		myTrade = Trade();      // 如果init返回值为false，则myTrade拷贝为新的对象
+	}
+	bool quitFlag = false;
+	while(!quitFlag)
+	{
+		drawMainMenu();
+		cout << "请输入您的选项:";
+		int selection;
+		cin >> selection;
+		int ID;
+		int count;
+		switch (selection)
+		{
+		case 1:
+			drawIndex();
+			myTrade.getIndex();
+			drawLine();
+			toBuy(ID, count);
+			if (!myTrade.getInformation(ID))
+			{
+				std::cout << "没有该商品，请先添加新商品" << std::endl;
+				system("pause");
+				break;
+			}
+			if (myTrade.buy(ID, count))
+			{
+				printf("成功购入%d件商品%d。\n", count, ID);
+				system("pause");
+			}
+			else
+			{
+				cout << "购入商品失败" << endl;
+			}
+			break;
+		case 2:
+			drawIndex();
+			myTrade.getIndex();
+			drawLine();
+			toSell(ID, count);
+			if (!myTrade.getInformation(ID))
+			{
+				cout << "没有该商品，无法卖出" << endl;
+				system("pause");
+				break;
+			}
+			if (myTrade.sell(ID, count))
+			{
+				printf("成功卖出%d件商品%d。\n", count, ID);
+				system("pause");
+			}
+			else
+			{
+				cout << "卖出商品失败" << endl;
+			}
+			break;
+		case 3:
+			char name[30];
+			float costPrice;
+			float price;
+			break;
+		}
 	}
 	return 0;
+}
+
+void toBuy(int& ID, int& count)
+{
+	//system("cls");
+	cout << "请输入需要购进的商品的ID:";
+	cin >> ID;
+	getchar();
+	cout << "请输入需要购进的数目:";
+	cin >> count;
+}
+
+void toSell(int& ID, int& count)
+{
+	//system("cls");
+	cout << "请输入卖出的商品ID:";
+	cin >> ID;
+	getchar();
+	cout << "请输入卖出的商品数目:";
+	cin >> count;
 }

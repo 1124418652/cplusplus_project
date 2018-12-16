@@ -2,6 +2,11 @@
 #include "Commodity.h"
 
 int Commodity::kinds = 0;
+void Commodity::addKinds(int kinds)
+{
+	Commodity::kinds = kinds;
+}
+
 Commodity::Commodity(char name[], float costPrice, float price)
 {
 	kinds++;
@@ -10,6 +15,15 @@ Commodity::Commodity(char name[], float costPrice, float price)
 	this->ID = kinds;
 	this->stock = 0;
 	strcpy(this->name, name);
+}
+
+Commodity::Commodity(int ID, char name[], float costPrice, float price, int stock)
+{
+	this->ID = ID;
+	strcpy(this->name, name);
+	this->costPrice = costPrice;
+	this->price = price;
+	this->stock = stock;
 }
 
 int Commodity::getID(){

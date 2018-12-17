@@ -122,6 +122,34 @@ int main(int argc, char* argv[])
 			char name[30];
 			float costPrice;
 			float price;
+			getchar();
+			cout << "请输入新品名称:";
+			cin.getline(name, 29);
+			cout << "请输入采购成本价:";
+			cin >> costPrice;
+			cout << "请输入售价:";
+			cin >> price;
+			myTrade.addNew(name, costPrice, price);
+			cout << "成功添加新品" << endl;
+			system("pause");
+			break;
+		case 4:
+			myTrade.getIndex();
+			system("pause");
+			break;
+		case 7:
+			cout << "是否确定退出系统?(Y/N):";
+			char ans;
+			cin >> ans;
+			system("pause");
+			if ('Y' == ans || 'y' == ans)
+			{
+				myTrade.save();
+				return 0;
+			}
+			else
+				break;
+		default:
 			break;
 		}
 	}

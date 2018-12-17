@@ -21,6 +21,8 @@ Commodity::Commodity(int ID, char name[], float costPrice, float price, int stoc
 {
 	this->ID = ID;
 	strcpy(this->name, name);
+	std::cout << this->name << std::endl;
+	system("pause");
 	this->costPrice = costPrice;
 	this->price = price;
 	this->stock = stock;
